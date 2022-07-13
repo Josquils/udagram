@@ -1,0 +1,37 @@
+Description: >
+    Agboro Joseph / Udagram / Udacity
+    This project deploys a VPC, with two pair of public and private subnets spread 
+    across two Availabilty Zones. It deploys an Internet Gateway, with a default 
+    route on the public subnets. It deploys a pair of NAT Gateways (one in each AZ), 
+    and default routes for them in the private subnets.
+
+Parameters:
+  EnvironmentName:
+    Description: Environment Name that would be prefixed to our resource name
+    Type: String
+
+  VPCCIDR:
+    Description: The CIDR Block for the mainBPC
+    Type: String
+
+  PubSubnet1CIDR:
+    Description: The CIDR for the public subnet 1
+    Type: String
+
+  PubSubnet2CIDR:
+    Description: The CIDR for the public subnet 2
+    Type:
+
+  PrivSubnet1CIDR:
+    Description: The CIDR for the private subnet 1
+    Type: String
+
+  PrivSubnet2CIDR:
+    Description: The CIDR for the private subnet 2
+    Type: String
+
+  AMI:
+    Description:
+    Type: String
+
+Resources:

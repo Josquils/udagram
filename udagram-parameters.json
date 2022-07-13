@@ -1,0 +1,30 @@
+    [
+        {
+            "ParameterKey": "EnvironmentName",
+            "ParameterValue": "QuilsUdagram"
+        },
+        {
+            "ParameterKey": "VPCCIDR",
+            "ParameterValue": "10.0.0.0/20"
+        },
+        {
+            "ParameterKey": "PubSubnet1CIDR",
+            "ParameterValue": "10.0.0.0/22"
+        },
+        {
+            "ParameterKey": "PubSubnet2CIDR",
+            "ParameterValue": "10.0.4.0/22"
+        },
+        {
+            "ParameterKey": "PrivSubnet1CIDR",
+            "ParameterValue": "10.0.8.0/22"
+        },
+        {
+            "ParameterKey": "PrivSubnet2CIDR",
+            "ParameterValue": "10.0.12.0/22"
+        },
+        {
+            "ParameterKey": "AMI",
+            "ParameterValue": "ami-0729e439b6769d6ab"
+        }
+    ]
