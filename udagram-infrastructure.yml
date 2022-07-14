@@ -11,7 +11,7 @@ Parameters:
     Type: String
 
   VPCCIDR:
-    Description: The CIDR Block for the mainBPC
+    Description: The CIDR Block for the mainVPC
     Type: String
 
   PubSubnet1CIDR:
@@ -35,3 +35,26 @@ Parameters:
     Type: String
 
 Resources:
+    #create VPC and attachments
+    VPC:
+        Type: AWS::EC2::VPC
+        Properties:
+            CidrBlock: !Ref VPCCIDR
+            EnableDnsHostnames: true
+            Tags: 
+                - Key: Name
+                  Value: !Ref EnvironmentName
+            
+    InternetGateway:
+        Type: AWS::EC2::InternetGateway
+        Properties:
+            Tags:
+                - Key: Name
+                  Value: !Ref EnvironmentName
+            
+    InternetGatewayAttachment:
+        Type: AWS::EC2::VPCGatewayAttachment
+        Properties:
+            InternetGatewayId: !Ref InternetGateway
+            VpcId: !Ref VPC
+
