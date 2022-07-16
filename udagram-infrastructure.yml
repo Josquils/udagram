@@ -227,8 +227,8 @@ Resources:
       VpcId: !Ref VPC
       SecurityGroupIngress:
         - IpProtocol: tcp
-          FromPort: 8080
-          ToPort: 8080
+          FromPort: 80
+          ToPort: 80
           CidrIp: 0.0.0.0/0
         - IpProtocol: tcp
           FromPort: 22
@@ -247,16 +247,18 @@ Resources:
       UserData:
         Fn::Base64: !Sub |
           #!/bin/bash
-          sudo apt-get update -y
-          sudo apt-get install apache2 -y
-          sudo systemctl start apache2.service
+          apt-get update -y
+          apt-get install apache2 -y
+          systemctl start apache2.service
+          cd /var/www/html
+          echo "Udagram is Up and Running!" > index.html
       ImageId: !Ref AMI
       KeyName: quils_alxt_key_pairs
       SecurityGroups:
         - Ref: WebServerSecGroup
       InstanceType: t3.medium
       BlockDeviceMappings:
-        - DeviceName: "/dev/sdk"
+        - DeviceName: "/dev/sda1"
           Ebs:
             VolumeSize: "10"
 
@@ -276,8 +278,8 @@ Resources:
     Type: AWS::ElasticLoadBalancingV2::LoadBalancer
     Properties:
       Subnets:
-        - !Ref PrivateSubnet1
-        - !Ref PrivateSubnet2
+        - !Ref PublicSubnet1
+        - !Ref PublicSubnet2
       SecurityGroups:
         - Ref: LBSecGroup
 
@@ -292,6 +294,7 @@ Resources:
         Ref: WebAppLB
       Port: "80"
       Protocol: HTTP
+
   ALBListenerRule:
     Type: AWS::ElasticLoadBalancingV2::ListenerRule
     Properties:
@@ -312,7 +315,7 @@ Resources:
       HealthCheckProtocol: HTTP
       HealthCheckTimeoutSeconds: 8
       HealthyThresholdCount: 2
-      Port: 8080
+      Port: 80
       Protocol: HTTP
       UnhealthyThresholdCount: 5
       VpcId: !Ref VPC
