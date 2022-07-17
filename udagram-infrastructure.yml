@@ -253,7 +253,6 @@ Resources:
           cd /var/www/html
           echo "Udagram is Up and Running!" > index.html
       ImageId: !Ref AMI
-      KeyName: quils_alxt_key_pairs
       SecurityGroups:
         - Ref: WebServerSecGroup
       InstanceType: t3.medium
