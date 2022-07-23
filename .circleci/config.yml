@@ -24,7 +24,7 @@ jobs:
     steps:
       - run:
           name: "Print Word"
-          command: "echo world!"
+          command: "echo world $Name !"
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
