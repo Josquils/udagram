@@ -19,8 +19,6 @@ jobs:
           command: "echo Hello "
 
   print-world:
-    requires: 
-      - print-hello
     docker:
       - image: ubuntu
     steps:
@@ -34,4 +32,6 @@ workflows:
   say-hello-workflow:
     jobs:
       - print-hello
-      - print-world
+      - print-world:
+          requires:
+            - print-hello
